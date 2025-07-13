@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ROHITH CATERERS - மெனு</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Madurai:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #fef6e4, #fcd34d);
+      font-family: 'Hind Madurai', 'Inter', sans-serif;
+    }
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .tab-btn {
+      transition: all 0.3s ease-in-out;
+      background: linear-gradient(to right, #fef08a, #facc15);
+      color: #78350f;
+    }
+    .tab-btn:hover {
+      background: linear-gradient(to right, #fde047, #eab308);
+      transform: scale(1.05);
+    }
+    .tab-btn.active {
+      background: linear-gradient(to right, #ca8a04, #854d0e);
+      color: white;
+      font-weight: 600;
+      transform: scale(1.1);
+    }
+    .menu-panel {
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.4s ease;
+    }
+    .menu-panel:hover {
+      transform: translateY(-4px);
+    }
+    @keyframes colorCycle {
+      0% { color: #eab308; }
+      25% { color: #d97706; }
+      50% { color: #ca8a04; }
+      75% { color: #f59e0b; }
+      100% { color: #b45309; }
+    }
+    .color-animate {
+      animation: colorCycle 2s linear infinite;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-item {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInItem 0.6s ease forwards;
+    }
+    .fade-in-item:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in-item:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in-item:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in-item:nth-child(4) { animation-delay: 0.4s; }
+    .fade-in-item:nth-child(5) { animation-delay: 0.5s; }
+    @keyframes fadeInItem {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .menu-panel li {
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .menu-panel li:hover {
+      background-color: #fef3c7;
+      transform: translateX(6px);
+    }
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      display: none;
+      background-color: #ca8a04;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #scrollTopBtn:hover {
+      background-color: #a16207;
+    }
+  </style>
+</head>
+<body class="text-stone-800">
+  <header class="py-4 relative">
+    <div class="absolute top-2 left-4 text-yellow-900 font-semibold text-sm sm:text-base">V MANIKANDAN</div>
+    <div class="absolute top-2 right-4 text-yellow-900 font-semibold text-sm sm:text-base flex items-center gap-1">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l3.6 7.59-1.35 2.45a1 1 0 00-.15.75l.3 1.6c.1.5.5.9 1 .9h11v-2H9.42a.25.25 0 01-.25-.25v-.03l.03-.12.9-1.65h7.45a1 1 0 00.95-.68l1.6-4.24A1 1 0 0019 8H7.42l-.94-2H3v2z" />
+      </svg>
+      <a href="https://wa.me/919444273232" class="hover:underline">94442 73232</a>
+    </div>
+    <div class="text-center flex flex-col items-center justify-center mt-2">
+      <div class="h-auto flex items-center justify-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Shirdi_Sai_Baba.jpg" alt="Saibaba Logo" class="w-20 h-20 rounded-full shadow-md mb-6">
+      </div>
+      <h1 class="text-4xl font-bold text-yellow-800 mt-2">ROHITH CATERERS</h1>
+      <p class="text-lg font-bold color-animate">Wedding Menu</p>
+    </div>
+  </header>
+  <nav class="sticky top-0 z-10 bg-yellow-100/80 backdrop-blur shadow-md">
+    <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-2 p-4">
+      <button class="tab-btn px-4 py-2 rounded-lg active" onclick="switchTab(event, 'panel1')">மாலை டிபன் & இரவு டின்னர்</button>
+      <button class="tab-btn px-4 py-2 rounded-lg" onclick="switchTab(event, 'panel2')">முகூர்த்தம் டிபன் & சாப்பாடு</button>
+      <button class="tab-btn px-4 py-2 rounded-lg" onclick="switchTab(event, 'panel3')">சீர் பட்சணங்கள்</button>
+      <button class="tab-btn px-4 py-2 rounded-lg" onclick="switchTab(event, 'panel4')">Annexure</button>
+    </div>
+  </nav>
+  <main id="content" class="max-w-4xl mx-auto p-4">
+    <section id="panel1" class="tab-content active">
+      <div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">மாலை டிபன்</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">மால்புவா</li>
+          <li class="fade-in-item">அடை, அவியல்</li>
+          <li class="fade-in-item">வெஜ் சேவை</li>
+          <li class="fade-in-item">உருளைக்கிழங்கு போண்டா</li>
+          <li class="fade-in-item">சட்னி, சாம்பார்</li>
+          <li class="fade-in-item">காபி / டீ</li>
+        </ul>
+      </div>
+      <!-- Evening Dinner & Welcome Drinks Content Goes Here -->
+	<div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">வெல்கம் டிரிங்க்ஸ்</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">வாட்டர் மெலன்</li>
+          <li class="fade-in-item">மின்ட் லெமன்</li>
+        </ul>
+      </div>
+	<div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">இரவு டின்னர்</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">குலோப்ஜாமுன் / மலாய் சான்விஜ் / ரசமலாய்</li>
+          <li class="fade-in-item">தக்காளி சூப்</li>
+          <li class="fade-in-item">பாதாம் கீர் / இளநீர் பாயசம்</li>
+          <li class="fade-in-item">கோபி 65 / கட்லட் / வெஜ் ஸ்பிரிங் ரோல்</li>
+          <li class="fade-in-item">உருளைக்கிழங்கு கறி</li>
+          <li class="fade-in-item">பூரி சன்னா</li>
+          <li class="fade-in-item">புல்கா / நான் / ருமாலி ரொட்டி, பன்னீர் பட்டர் மசாலா</li>
+          <li class="fade-in-item">வெஜ் பிரியாணி / காளான் பிரியாணி / பலாக்காய் பிரியாணி</li>
+          <li class="fade-in-item">ஆனியன் ரைத்தா</li>
+          <li class="fade-in-item">இடியாப்பம், குருமா</li>
+          <li class="fade-in-item">மினி உத்தப்பம்</li>
+          <li class="fade-in-item">தேங்காய் சட்னி</li>
+          <li class="fade-in-item">பிசிபேளாபாத், பப்படம்</li>
+          <li class="fade-in-item">ரசம் சாதம்</li>
+          <li class="fade-in-item">தயிர் சாதம்</li>
+          <li class="fade-in-item">ஊறுகாய்</li>
+          <li class="fade-in-item">ஐஸ்கிரீம்</li>
+          <li class="fade-in-item">பீடா</li>
+          <li class="fade-in-item">ப்ரூட் சாலட்</li>
+        </ul>
+      </div>
+    </section>
+    <section id="panel2" class="tab-content">
+      <div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">முகூர்த்தம் டிபன்</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">அசோகா அல்வா / காசி அல்வா / கேரட் அல்வா</li>
+          <li class="fade-in-item">இட்லி, வெண்பொங்கல்</li>
+          <li class="fade-in-item">பூரி மசாலா, வடை</li>
+          <li class="fade-in-item">மசால் தோசை, சட்னி, கார சட்னி, கொஸ்து</li>
+          <li class="fade-in-item">மிளகாய் பொடி, எண்ணெய்</li>
+          <li class="fade-in-item">காபி / டீ</li>
+        </ul>
+      </div>
+	<div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">முகூர்த்தம் ஜூஸ்</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">க்ரேப் ஜூஸ்</li>
+          <li class="fade-in-item">பைனாப்பிள் ஜூஸ்</li>
+        </ul>
+      </div>
+      <div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">முகூர்த்தம் சாப்பாடு</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">காஜு கத்லி</li>
+          <li class="fade-in-item">பால் பாயசம் / சேமியா பாயசம்</li>
+          <li class="fade-in-item">தயிர் பச்சடி</li>
+          <li class="fade-in-item">வெஜிடபிள் உசிலி</li>
+          <li class="fade-in-item">வாழைக்காய் கறி / கத்திரிக்காய் கறி</li>
+          <li class="fade-in-item">அவியல் / கூட்டு</li>
+          <li class="fade-in-item">புளி சாதம்</li>
+          <li class="fade-in-item">உருளைகிழங்கு சிப்ஸ்</li>
+          <li class="fade-in-item">தயிர் வடை / மசால் வடை</li>
+          <li class="fade-in-item">சாதம், பருப்பு, நெய், அப்பளம்</li>
+          <li class="fade-in-item">கதம்ப சாம்பார்</li>
+          <li class="fade-in-item">வத்தல் குழம்பு / வெண்டைக்காய் மோர்க்குழம்பு</li>
+          <li class="fade-in-item">தக்காளி ரசம்</li>
+          <li class="fade-in-item">தயிர்</li>
+          <li class="fade-in-item">புளி இஞ்சி / ஊறுகாய்</li>
+          <li class="fade-in-item">ஐஸ்கிரீம்</li>
+          <li class="fade-in-item">பீடா</li>
+        </ul>
+      </div>
+    </section>
+    <section id="panel3" class="tab-content">
+      <div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">சீர் பட்சணங்கள்</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">7 சுற்றுமுறுக்கு</li>
+          <li class="fade-in-item">லட்டு</li>
+          <li class="fade-in-item">மைசூர் பாக்கு</li>
+          <li class="fade-in-item">பாதுஷா</li>
+          <li class="fade-in-item">மிக்ஸர்</li>
+        </ul>
+      </div>
+    </section>
+    <section id="panel4" class="tab-content">
+      <div class="menu-panel">
+        <h2 class="text-2xl font-bold text-yellow-900 mb-4">Annexure</h2>
+        <ul class="space-y-2">
+          <li class="fade-in-item">கல்கண்டு, பன்னீர், சந்தானம், குங்குமம்</li>
+          <li class="fade-in-item">முகூர்த்த தாம்பூலப்பை தேங்காயுடன்</li>
+          <li class="fade-in-item">காபி எல்லா வேலைகளுக்கும்</li>
+          <li class="fade-in-item">டேபிள் துணி (Table Frill Cloth)</li>
+          <li class="fade-in-item">போட்டோ, வீடியோ</li>
+          <li class="fade-in-item">நாதஸ்வரம்</li>
+          <li class="fade-in-item">கோலம்</li>
+        </ul>
+        <p class="mt-4 text-yellow-900 font-semibold">(மேலே கொடுக்கப்பட்ட அனைத்தும் காண்ட்ராக்டில் தேவைப்பட்டால் கொடுக்கப்படுபவை)</p>
+      </div>
+<div class="menu-panel">
+<h2 class="text-2xl font-bold text-yellow-900 mb-4">பார்ட்டி ஏற்பாடு</h2>
+<p class="text-stone-600">ஜானுவாசகார், வாழை மரம், கிளினர் சம்பளம்,மண்டபத்திற்குதேவையான பாத்திரம், டாய்லெட் அயிட்டம்ஸ், தேங்காய் எண்ணெய், சோப்பு, சீப்பு, பேஸ்ட் இவை யாவும் பார்ட்டியின் பொறுப்பு.</p>
+</div>
+
+    </section>
+  </main>
+  <footer class="bg-yellow-900 text-white text-sm text-center py-4 mt-10">
+    <p>#30A, Dwarakamai, Sri Madurakali Nagar, Madipakkam, Chennai - 600 091 | Office: #1, L.G Nagar, Madipakkam, Chennai - 600 091</p>
+    <p class="mt-1">&copy; 2025 ROHITH CATERERS. All rights reserved.</p>
+  </footer>
+  <button onclick="scrollToTop()" id="scrollTopBtn" title="Back to Top">↑</button>
+  <a href="https://wa.me/919444273232" target="_blank" class="fixed bottom-6 right-6 bg-amber-600 hover:bg-amber-700 text-white rounded-full p-4 shadow-lg transition-transform transform hover:scale-110" title="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.72 13.06c-.38-.19-2.24-1.1-2.59-1.23-.35-.13-.6-.19-.85.19-.25.38-.97 1.23-1.2 1.48-.22.25-.45.28-.83.09-.38-.19-1.6-.59-3.04-1.89-1.12-1-1.88-2.24-2.1-2.62-.22-.38-.02-.58.17-.77.17-.17.38-.45.56-.67.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.66-.09-.19-.85-2.06-1.17-2.83-.31-.75-.63-.65-.85-.66h-.72c-.22 0-.6.08-.91.38C2.72 6.02 2 7.48 2 9.24c0 1.76.68 3.45 1.9 4.73 1.17 1.23 2.74 2.1 4.46 2.48 1.72.38 3.59.28 5.25-.25l.41-.13.19.09c.25.13 1.6.75 1.86.84.25.09.44.13.63-.13.19-.25.72-.84.91-1.1.19-.25.31-.44.47-.69.13-.25.06-.44-.06-.63-.13-.19-.47-.31-.97-.53z" />
+    </svg>
+  </a>
+  <script>
+    function switchTab(event, panelId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(panel => panel.classList.remove('active'));
+      document.getElementById(panelId).classList.add('active');
+    }
+    window.onscroll = function() {
+      document.getElementById('scrollTopBtn').style.display = (window.scrollY > 200) ? 'block' : 'none';
+    }
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
